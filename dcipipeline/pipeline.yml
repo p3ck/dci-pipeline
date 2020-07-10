@@ -2,8 +2,9 @@
   - name: openshift-vanilla
     type: ocp
     location: agents/openshift-vanilla
+    inventory: agents/openshift-vanilla
     outputs:
-      hosts: agents/openshift-vanilla/outputs/localhost/etc/hosts
+      kubeconfig: agents/openshift-vanilla/outputs/localhost/kubeconfig
     topic: OCP-4.4
     success_tag: ocp-vanilla-ok
     fallback_last_success: ocp-vanilla-ok
@@ -12,7 +13,7 @@
     type: cnf
     location: agents/rh-cnf
     inputs:
-      hosts: agents/rh-cnf/hosts
+      kubeconfig: agents/rh-cnf/kubeconfig
     topic: RH-CNF-0.1
     success_tag: ocp-vanilla-ok
     fallback_last_success: ocp-vanilla-ok

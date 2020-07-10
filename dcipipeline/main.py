@@ -52,7 +52,7 @@ library            = {dci_ansible_dir}/modules/
 module_utils       = {dci_ansible_dir}/module_utils/
 callback_whitelist = dci
 callback_plugins   = {dci_ansible_dir}/callback/
-interpreter_python = /usr/bin/python2
+roles_path         = /usr/share/dci/roles/:/var/lib/dci-openshift-agent/baremetal_deploy_repo/ansible-ipi-install/roles/
 
 '''.format(dci_ansible_dir=dci_ansible_dir))
 
@@ -138,6 +138,7 @@ def run_ocp(stage, dci_credentials, envvars, data_dir, job_info):
         verbosity=VERBOSE_LEVEL,
         envvars=envvars,
         extravars=extravars,
+        inventory=stage['inventory'],
         quiet=False)
     log.info(run.stats)
 
@@ -161,6 +162,7 @@ def run_cnf(stage, dci_credentials, envvars, data_dir, job_info):
         verbosity=VERBOSE_LEVEL,
         envvars=envvars,
         extravars=extravars,
+        inventory=stage['inventory'],
         quiet=False)
     log.info(run.stats)
     return run.rc == 0
